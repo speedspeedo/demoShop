@@ -15,7 +15,7 @@ const store = createStore(rootReducer);
 
 function App() {
   return (
-    // <Provider store={store}>
+    
       <Router>
         <div className="App">
           <Routes>
@@ -50,7 +50,7 @@ function App() {
           </Routes>
         </div>
       </Router>
-    // </Provider>
+    
   );
 }
 
