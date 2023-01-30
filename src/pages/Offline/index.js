@@ -33,7 +33,9 @@ const OfflineShop = () => {
   }, []);
 
   const handleChange = (e) => {
-    if(e.target.value == 'All products') {setsearchData({
+    const data = e.target.value;
+    console.log(data);
+    if(data === 'All products') {setsearchData({
       ...searchData,
       district: "",
       keyword: "",
@@ -41,13 +43,13 @@ const OfflineShop = () => {
       const temp = e.target.value.split('/');
       const district = temp[0];
       const keyword = temp[1];
-      console.log(district, keyword);
       setsearchData({
+        ...searchData,
         district,
         keyword,
       })
     }
-
+    // console.log(searchData);
   }
 
 

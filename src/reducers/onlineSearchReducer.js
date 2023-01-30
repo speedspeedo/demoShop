@@ -13,11 +13,6 @@ const onlineSearchReducer = (state = initialState , action) => {
             keyword: payload.keyword,
             district: payload.district,
           }
-        // case 'CHANGESTATUS':
-        //   return {
-        //     ...state,
-        //     status: payload.status,
-        //   }
         default:
           return state;
       }
