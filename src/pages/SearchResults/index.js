@@ -17,8 +17,11 @@ function SearchResults() {
   const [pageId, setPageId] = useState(1)
   const { id } = useParams()
 
-  const keyword = useSelector(state => state.onlineSearch.keyword)
-  const district = useSelector(state => state.onlineSearch.district)
+  const isOnline = id === "online";
+
+  const keyword = useSelector(state => isOnline?state.onlineSearch.keyword: state.offlineSearch.keyword);
+  const district = useSelector(state => isOnline?state.onlineSearch.district: state.offlineSearch.district);
+  // const district = useSelector(state => state.onlineSearch.district)
   const api_key = useSelector(state => state.onlineSearch.api_key)
   const secret = useSelector(state => state.onlineSearch.secret)
 
