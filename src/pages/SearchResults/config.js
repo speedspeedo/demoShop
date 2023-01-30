@@ -1,3 +1,0 @@
-const Image_Gallery_Client_ID="qCovITsHHmmEbc3setYx1gPouATmpUnlY8aSKzQZMDM";
-
-export default Image_Gallery_Client_ID; 

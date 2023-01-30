@@ -1,16 +1,8 @@
 import { combineReducers } from "redux";
-
-const initialState = {
-    products: []
-};
-
-const productsReducer = (state = initialState, action) => {
-    switch(action.type) {
-        default:
-            return state
-    }
-}
+import onlineSearch  from './onlineSearchReducer';
+import offlineSearch from "./offlineSearchReducer";
 
 export default combineReducers({
-    information: productsReducer
-})
+  onlineSearch,
+  offlineSearch
+});
