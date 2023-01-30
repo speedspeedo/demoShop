@@ -1,56 +1,19 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react';
-import { createStore } from 'redux';
-import rootReducer from './reducers';
+import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+import Routes from "./routes";
 
-import Home from './pages/Home';
-import OnlineShop from './pages/Online';
-import OfflineShop from './pages/Offline';
-import SearchResults from './pages/SearchResults';
-
-
-import './App.css';
-
-const store = createStore(rootReducer);
+import "./App.css";
 
 function App() {
   return (
-    
+    <Provider store={store}>
       <Router>
-        <div className="App">
-          <Routes>
-            <Route 
-              path='/'
-              element={
-                <Home />
-              }
-            />
-
-            <Route 
-              path='/online'
-                element={
-                  <OnlineShop />
-                }
-            />
-
-            <Route 
-              path='/offline'
-                element={
-                  <OfflineShop />
-                }
-            />
-
-            <Route 
-              path='/searchResults'
-              element={
-                <SearchResults />
-              }
-            />
-            
-          </Routes>
+        <div className="App"> 
+          <Routes />
         </div>
       </Router>
-    
+    </Provider>
   );
 }
 
