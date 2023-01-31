@@ -2,8 +2,8 @@ import axios from "axios";
 import ReactPaginate from "react-paginate";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useSearchParams } from 'react-router-dom'
-import { SERVER_IP , PER_PAGE } from "../../config";
+import { useParams, useSearchParams } from "react-router-dom";
+import { SERVER_IP, PER_PAGE } from "../../config";
 import "./index.css";
 
 function SearchResults() {
@@ -14,22 +14,26 @@ function SearchResults() {
   const [currentImgaes, setCurrentImages] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [imagesOffset, setImgaesOffset] = useState(0);
-  const [pageId, setPageId] = useState(1)
-  const { id } = useParams()
+  const [pageId, setPageId] = useState(1);
+  const { id } = useParams();
 
   const isOnline = id === "online";
 
-  const keyword = useSelector(state => isOnline?state.onlineSearch.keyword: state.offlineSearch.keyword);
-  const district = useSelector(state => isOnline?state.onlineSearch.district: state.offlineSearch.district);
+  const keyword = useSelector((state) =>
+    isOnline ? state.onlineSearch.keyword : state.offlineSearch.keyword
+  );
+  const district = useSelector((state) =>
+    isOnline ? state.onlineSearch.district : state.offlineSearch.district
+  );
   // const district = useSelector(state => state.onlineSearch.district)
-  const api_key = useSelector(state => state.onlineSearch.api_key)
-  const secret = useSelector(state => state.onlineSearch.secret)
+  const api_key = useSelector((state) => state.onlineSearch.api_key);
+  const secret = useSelector((state) => state.onlineSearch.secret);
 
-  let [searchParams , setSearchParams] = useSearchParams()  
+  let [searchParams, setSearchParams] = useSearchParams();
   const handlePageClick = (event) => {
-    const pageId = event.selected
+    const pageId = event.selected;
     const newOffset = (pageId * PER_PAGE) % total;
-    setPageId(pageId + 1)
+    setPageId(pageId + 1);
     setImgaesOffset(newOffset);
   };
 
@@ -40,47 +44,56 @@ function SearchResults() {
   }, [images, imagesOffset]);
 
   useEffect(() => {
-    if(id == 'offline'){
-      // keyword = useSelector(state => state.offlineSearch.keyword)
-    }
     setSearchParams({
       search_keyword: keyword,
       district: district,
       page_num: pageId,
-      per_page: PER_PAGE
-    })
-    async function fetchData(){
+      per_page: PER_PAGE,
+    });
+    async function fetchData() {
       setIsLoading(true);
-      const path = (id == 'online')? 
-      `${SERVER_IP}api/online-items/?api_key=${api_key}&secret=${secret}&search_keyword=${keyword}&district=${district}&page_num=${pageId}&per_page=${PER_PAGE}`
-      :`${SERVER_IP}api/offline-items/?search_keyword=${keyword}&district=${district}&page_num=${pageId}&per_page=${PER_PAGE}`
-      try{
+      const path =
+        id == "online"
+          ? `${SERVER_IP}api/online-items/?api_key=${api_key}&secret=${secret}&search_keyword=${keyword}&district=${district}&page_num=${pageId}&per_page=${PER_PAGE}`
+          : `${SERVER_IP}api/offline-items/?search_keyword=${keyword}&district=${district}&page_num=${pageId}&per_page=${PER_PAGE}`;
+      try {
         const results = await axios.get(path);
         console.log(results);
-        setImages(results.data.data)
-        setTotal(results.data.total)
-      }catch(e){
-        throw e
+        setImages(results.data.data);
+        setTotal(results.data.total);
+      } catch (e) {
+        throw e;
       }
       setIsLoading(false);
     }
-    fetchData()
-    
+    fetchData();
   }, [pageId]);
 
   let products;
   if (images.length > 0) {
     products = images.map((image, idx) => {
       return (
-        <div className="img-wrapper" key={idx} style={{border: '1px solid rgba(0, 0, 0, 0.5)'}}>
+        <div
+          className="img-wrapper"
+          key={idx}
+          // style={{ border: "1px solid rgba(0, 0, 0, 0.5)" }}
+        >
           <div class="content-between">
-          <div>
-            <img src={`${SERVER_IP}${image.Image}`} alt={image.alt_description} />
-            <h6 class="border border-b-2 border-b-slate-600">{image.Title}</h6>
+            {/* <!-- Modal toggle --> */}
+            <button link="#">
+              <div>
+                <img
+                  src={`${SERVER_IP}${image.Image}`}
+                  alt={image.alt_description}
+                  link
+                />
+                <h6 class="border border-b-2 border-pink-400">
+                  {image.Title}
+                </h6>
+              </div>
+              <div>{image.Price}</div>
+            </button>
           </div>
-          <div>{image.Price}</div>
-          </div>
-          
         </div>
       );
     });
@@ -90,7 +103,7 @@ function SearchResults() {
   return (
     <div>
       <h2>Products</h2>
-      <div className="App">{products}</div>
+      <div className="SearchPanel">{products}</div>
 
       <div className="pagination">
         <ReactPaginate

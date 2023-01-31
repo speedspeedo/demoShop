@@ -19,8 +19,8 @@ const OfflineShop = () => {
 
   useEffect(() => {
     async function fetchData(){
-      const getData = await axios.get(`http://192.168.125.74:8000/api/search-history`);
-      const results = getData.data;
+      const getData = await axios.get(`http://192.168.125.74:8000/api/search-history/`);
+      const results = getData.data.data;
       setOptionList( results.map((result) => {
         return (
           <option>{`${result.District}/${result.SearchKeyword}`}</option>
