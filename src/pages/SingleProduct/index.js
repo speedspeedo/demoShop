@@ -56,8 +56,10 @@ function SingleProduct() {
         setPropsList(
           lists.map((val) => {
             return (
-              <button class="btn btn-outline-primary d-block mb-2">{val}</button>
-            )
+              <button class="btn btn-outline-primary d-block mb-2">
+                {val}
+              </button>
+            );
           })
         );
         console.log(lists);
@@ -110,69 +112,31 @@ function SingleProduct() {
                     />
                   </a>
                 </div>
-                <div class="thumbs-wrap">
-                  <a
-                    data-fslightbox="mygalley"
-                    data-type="image"
-                    href="assets/images/items/10.webp"
-                    class="item-thumb"
-                  >
-                    <img
-                      width="60"
-                      height="60"
-                      src="assets/images/items/10.webp"
-                    />
-                  </a>
-                  <a
-                    data-fslightbox="mygalley"
-                    data-type="image"
-                    href="assets/images/items/10.webp"
-                    class="item-thumb"
-                  >
-                    <img
-                      width="60"
-                      height="60"
-                      src="assets/images/items/10.webp"
-                    />
-                  </a>
-                  <a
-                    data-fslightbox="mygalley"
-                    data-type="image"
-                    href="assets/images/items/10.webp"
-                    class="item-thumb"
-                  >
-                    <img
-                      width="60"
-                      height="60"
-                      src="assets/images/items/10.webp"
-                    />
-                  </a>
-                  <a
-                    data-fslightbox="mygalley"
-                    data-type="image"
-                    href="assets/images/items/10.webp"
-                    class="item-thumb"
-                  >
-                    <img
-                      width="60"
-                      height="60"
-                      src="assets/images/items/10.webp"
-                    />
-                  </a>
-                  <a
-                    data-fslightbox="mygalley"
-                    data-type="image"
-                    href="assets/images/items/10.webp"
-                    class="item-thumb"
-                  >
-                    <img
-                      width="60"
-                      height="60"
-                      src="assets/images/items/10.webp"
-                    />
-                  </a>
-                </div>
+                
               </article>
+              <div class="">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-30" src="assets/images/items/1.webp" alt="First slide"></img>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-30" src="assets/images/items/2.webp" alt="Second slide"></img>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-30" src="assets/images/items/3.webp" alt="Third slide"></img>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+                </div>
             </aside>
             <main class="col-lg-6">
               <article class="ps-lg-3">
@@ -212,13 +176,11 @@ function SingleProduct() {
                   <span class="text-muted">/per box</span>
                 </div>
 
-                  <div class="row">
-                    <div class="col-3">
-                      <h3>硬盘容量</h3>
-                    </div>
-                <div class="col-9">
-                  {propsList}
-                </div>
+                <div class="row">
+                  <div class="col-3">
+                    <h3>硬盘容量</h3>
+                  </div>
+                  <div class="col-9">{propsList}</div>
                 </div>
 
                 <dl class="row">
@@ -227,9 +189,6 @@ function SingleProduct() {
 
                   <dt class="col-5">Color</dt>
                   <dd class="col-7">Brown</dd>
-
-                  <dt class="col-5">Material</dt>
-                  <dd class="col-7">Cotton, Jeans </dd>
 
                   <dt class="col-5">Brand</dt>
                   <dd class="col-7">{results?.brand} </dd>
@@ -440,9 +399,6 @@ function SingleProduct() {
                       <dd class="col-7">
                         {results?.seller_info?.item_score}points
                       </dd>
-
-                      <dt class="col-5">Material</dt>
-                      <dd class="col-7">Cotton, Jeans </dd>
 
                       <dt class="col-5">Brand</dt>
                       <dd class="col-7">{results?.brand} </dd>
