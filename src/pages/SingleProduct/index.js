@@ -10,6 +10,7 @@ function SingleProduct() {
 
   const [results, setResults] = useState({});
   const [propImgs, setPropImgs] = useState([]);
+  const [propsList, setPropsList] = useState([]);
 
   let [searchParams] = useSearchParams();
 
@@ -25,6 +26,8 @@ function SingleProduct() {
       try {
         const tempResults = await axios.get(mainImgPath);
         const propImgsPath = Object.values(tempResults.data.json.props_img);
+        console.log(tempResults.data.json);
+        // propImgs
         setPropImgs(
           propImgsPath.map((val) => {
             return (
@@ -34,7 +37,7 @@ function SingleProduct() {
                     src={`${val}`}
                     width="200"
                     height="200"
-                    class="img-md img-thumbnail"
+                    class="img-thumbnail"
                   />
                 </a>
                 <div class="info">
@@ -48,7 +51,17 @@ function SingleProduct() {
             );
           })
         );
-        // console.log(propImgsPath);
+        // props_list
+        const lists = Object.values(tempResults.data.json.props_list);
+        setPropsList(
+          lists.map((val) => {
+            return (
+              <button class="btn btn-outline-primary d-block mb-2">{val}</button>
+            )
+          })
+        );
+        console.log(lists);
+
         setResults(tempResults.data.json);
       } catch (error) {
         throw error;
@@ -199,12 +212,14 @@ function SingleProduct() {
                   <span class="text-muted">/per box</span>
                 </div>
 
-                <p>
-                  Modern look and quality demo item is a streetwear-inspired
-                  collection that continues to break away from the conventions
-                  of mainstream fashion. Made in Italy, these black and brown
-                  clothing low-top shirts for men.
-                </p>
+                  <div class="row">
+                    <div class="col-3">
+                      <h3>硬盘容量</h3>
+                    </div>
+                <div class="col-9">
+                  {propsList}
+                </div>
+                </div>
 
                 <dl class="row">
                   <dt class="col-5">Type:</dt>
@@ -442,78 +457,6 @@ function SingleProduct() {
                   <h5 class="card-title">Similar items</h5>
 
                   {propImgs}
-
-                  <article class="itemside mb-3">
-                    <a href="#" class="aside">
-                      <img
-                        src="assets/images/items/8.webp"
-                        width="96"
-                        height="96"
-                        class="img-md img-thumbnail"
-                      />
-                    </a>
-                    <div class="info">
-                      <a href="#" class="title mb-3">
-                        {" "}
-                        Rucksack Backpack Large <br /> Line Mounts{" "}
-                      </a>
-                      <strong class="price"> $38.90</strong>
-                    </div>
-                  </article>
-
-                  <article class="itemside mb-3">
-                    <a href="#" class="aside">
-                      <img
-                        src="assets/images/items/9.webp"
-                        width="96"
-                        height="96"
-                        class="img-md img-thumbnail"
-                      />
-                    </a>
-                    <div class="info">
-                      <a href="#" class="title mb-3">
-                        {" "}
-                        Summer New Men's Denim <br /> Jeans Shorts{" "}
-                      </a>
-                      <strong class="price"> $29.50</strong>
-                    </div>
-                  </article>
-
-                  <article class="itemside mb-3">
-                    <a href="#" class="aside">
-                      <img
-                        src="assets/images/items/10.webp"
-                        width="96"
-                        height="96"
-                        class="img-md img-thumbnail"
-                      />
-                    </a>
-                    <div class="info">
-                      <a href="#" class="title mb-1">
-                        {" "}
-                        T-shirts with multiple colors, for men and lady{" "}
-                      </a>
-                      <strong class="price"> $120.00</strong>
-                    </div>
-                  </article>
-
-                  <article class="itemside mb-3">
-                    <a href="#" class="aside">
-                      <img
-                        src="assets/images/items/11.webp"
-                        width="96"
-                        height="96"
-                        class="img-md img-thumbnail"
-                      />
-                    </a>
-                    <div class="info">
-                      <a href="#" class="title mb-1">
-                        {" "}
-                        Blazer Suit Dress Jacket for Men, Blue color{" "}
-                      </a>
-                      <strong class="price"> $339.90</strong>
-                    </div>
-                  </article>
                 </div>
               </div>
             </div>
