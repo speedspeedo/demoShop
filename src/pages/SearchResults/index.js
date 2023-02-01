@@ -79,20 +79,22 @@ function SearchResults() {
           // style={{ border: "1px solid rgba(0, 0, 0, 0.5)" }}
         >
           <div class="content-between">
-            {/* <!-- Modal toggle --> */}
-            <button link="#">
-              <div>
-                <img
-                  src={`${SERVER_IP}${image.Image}`}
-                  alt={image.alt_description}
-                  link
-                />
-                <h6 class="border border-b-2 border-pink-400">
-                  {image.Title}
-                </h6>
-              </div>
-              <div>{image.Price}</div>
-            </button>
+            {/* <a href="/singleProduct/" target="_blank">   */}
+            <a href={`/singleProduct?id=${image.NumIid}&district=${image.District}`} target="_blank">
+              <button>
+                <div>
+                  <img
+                    src={`${SERVER_IP}${image.Image}`}
+                    alt={image.alt_description}
+                    link
+                  />
+                  <h6 class="border border-b-2 border-pink-400">
+                    {image.Title}
+                  </h6>
+                </div>
+                <div>{image.Price}</div>
+              </button>
+            </a>
           </div>
         </div>
       );
@@ -100,6 +102,7 @@ function SearchResults() {
   } else {
     products = <div>No Products</div>;
   }
+
   return (
     <div>
       <h2>Products</h2>

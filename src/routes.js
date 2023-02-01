@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import OnlineShop from "./pages/Online";
 import OfflineShop from "./pages/Offline";
 import SearchResults from "./pages/SearchResults";
+import SingleProduct from "./pages/SingleProduct";
 import { Children } from "react";
 
 function Router() {
@@ -13,6 +14,7 @@ function Router() {
         { path: "/online", element: <OnlineShop /> },
         { path: "/offline", element: <OfflineShop /> },
         { path: "/searchResults/:id", element: <SearchResults /> },
+        { path: "/singleProduct", element: <SingleProduct />},
       ],
     },
   ]);
