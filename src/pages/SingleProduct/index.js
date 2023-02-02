@@ -53,8 +53,8 @@ function SingleProduct() {
               <img
                 class="mx-3 mb-2"
                 src={`${val}`}
-                width="100"
-                height={100}
+                width="150px"
+                height= "150px"
                 style={{ display: "inline-block" }}
               />
             );
@@ -94,7 +94,6 @@ function SingleProduct() {
                     Name : {val.properties_name} <br />
                     Quantity : {val.quantity}{" "}
                   </a>
-                  
                 </div>
               </article>
             );
@@ -142,10 +141,7 @@ function SingleProduct() {
                     data-type="image"
                     href="assets/images/items/10.webp"
                   >
-                    <img
-                      height="560"
-                      src={`${SERVER_IP}${results.pic_url}`}
-                    />
+                    <img height="560" src={`${SERVER_IP}${results.pic_url}`} />
                   </a>
                 </div>
               </article>
@@ -358,7 +354,7 @@ function SingleProduct() {
               <div class="card">
                 <header class="card-header">
                   <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
+                    {/* <li class="nav-item">
                       <a
                         href="#"
                         data-bs-target="#tab_specs"
@@ -367,7 +363,7 @@ function SingleProduct() {
                       >
                         Specification
                       </a>
-                    </li>
+                    </li> */}
                     <li class="nav-item">
                       <a
                         href="#"
@@ -375,10 +371,10 @@ function SingleProduct() {
                         data-bs-toggle="tab"
                         class="nav-link"
                       >
-                        Warranty info
+                        Property info
                       </a>
                     </li>
-                    <li class="nav-item">
+                    {/* <li class="nav-item">
                       <a
                         href="#"
                         data-bs-target="#tab_shipping"
@@ -387,7 +383,7 @@ function SingleProduct() {
                       >
                         Shipping info
                       </a>
-                    </li>
+                    </li> */}
                     <li class="nav-item">
                       <a
                         href="#"
@@ -446,7 +442,7 @@ function SingleProduct() {
                       </tr>
                     </table>
                   </article>
-                  <article id="tab_warranty" class="tab-pane card-body">
+                  <article id="tab_warranty" class="tab-pane card-body text-left">
                     {propImgs}
                   </article>
                   <article id="tab_shipping" class="tab-pane card-body">
@@ -460,7 +456,7 @@ function SingleProduct() {
                     non proident, sunt in culpa qui officia deserunt mollit anim
                     id est laborum.
                   </article>
-                  <article id="tab_seller" class="tab-pane card-body">
+                  <article id="tab_seller" class="tab-pane card-body text-xl">
                     <dl class="row">
                       <dt class="col-5">Shop name</dt>
                       <dd class="col-7">{results?.seller_info?.shop_name}</dd>
@@ -496,11 +492,11 @@ function SingleProduct() {
                 </div>
               </div>
             </div>
-            <div class="text-left">
+            <div class="text-left text-lg">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Similar items</h5>
-                 
+                  <h2 class="card-title">Similar items</h2>
+
                   {skuImgs}
                 </div>
               </div>
