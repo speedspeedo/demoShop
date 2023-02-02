@@ -1,4 +1,5 @@
 // http://192.168.125.74:8000/api/item-detail/?num_iid=650543599436&district=taobao
+import { width } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
@@ -11,6 +12,7 @@ function SingleProduct() {
   const [results, setResults] = useState({});
   const [propImgs, setPropImgs] = useState([]);
   const [propsList, setPropsList] = useState([]);
+  const [skuImgs, setSkuImgs] = useState([]);
 
   let [searchParams] = useSearchParams();
 
@@ -31,23 +33,30 @@ function SingleProduct() {
         setPropImgs(
           propImgsPath.map((val) => {
             return (
-              <article class="itemside mb-3">
-                <a href="#" class="aside">
-                  <img
-                    src={`${val}`}
-                    width="200"
-                    height="200"
-                    class="img-thumbnail"
-                  />
-                </a>
-                <div class="info">
-                  <a href="#" class="title mb-1">
-                    {" "}
-                    T-shirts with multiple colors, for men and lady{" "}
-                  </a>
-                  <strong class="price"> $120.00</strong>
-                </div>
-              </article>
+              // <article class="itemside mb-3">
+              //   <a href="#" class="aside">
+              //     <img
+              //       src={`${val}`}
+              //       width="200"
+              //       height="200"
+              //       class="img-thumbnail"
+              //     />
+              //   </a>
+              //   <div class="info">
+              //     <a href="#" class="title mb-1">
+              //       {" "}
+              //       T-shirts with multiple colors, for men and lady{" "}
+              //     </a>
+              //     <strong class="price"> $120.00</strong>
+              //   </div>
+              // </article>
+              <img
+                class="mx-3 mb-2"
+                src={`${val}`}
+                width="100"
+                height={100}
+                style={{ display: "inline-block" }}
+              />
             );
           })
         );
@@ -62,8 +71,35 @@ function SingleProduct() {
             );
           })
         );
-        console.log(lists);
+        // console.log(lists);
 
+        const skuArray = Object.values(tempResults.data.json.skus);
+        console.log(skuArray[0]);
+        setSkuImgs(
+          skuArray[0].map((val) => {
+            return (
+              <article class="itemside mb-3">
+                <a href="#" class="aside">
+                  <img
+                    src="assets/images/items/8.webp"
+                    width="96"
+                    height="96"
+                    class="img-md img-thumbnail"
+                  />
+                </a>
+                <div class="info">
+                  <a class="title mb-1">
+                    {" "}
+                    <strong class="price"> Price : ¥{val.price}</strong> <br />
+                    Name : {val.properties_name} <br />
+                    Quantity : {val.quantity}{" "}
+                  </a>
+                  
+                </div>
+              </article>
+            );
+          })
+        );
         setResults(tempResults.data.json);
       } catch (error) {
         throw error;
@@ -74,7 +110,7 @@ function SingleProduct() {
     fetchData();
   }, []);
 
-  console.log(propImgs);
+  // console.log(results.desc_img[0]);
 
   return (
     // <div>213</div>
@@ -108,35 +144,93 @@ function SingleProduct() {
                   >
                     <img
                       height="560"
-                      src="http://192.168.125.74:8000/media/images/gw.alicdn.com/i3/1913041427/O1CN01fUvD0U1MPbg1fatK8_!!1913041427.jpg"
+                      src={`${SERVER_IP}${results.pic_url}`}
                     />
                   </a>
                 </div>
-                
               </article>
               <div class="">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-30" src="assets/images/items/1.webp" alt="First slide"></img>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-30" src="assets/images/items/2.webp" alt="Second slide"></img>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-30" src="assets/images/items/3.webp" alt="Third slide"></img>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+                <div
+                  id="carouselExampleControls"
+                  class="carousel slide"
+                  data-ride="carousel"
+                >
+                  <div class="">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img
+                          class="d-block"
+                          width="300px"
+                          height="300px"
+                          src={`http://192.168.125.74:8000/${results?.desc_img[0]}`}
+                          alt="First slide"
+                        ></img>
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          class="d-block"
+                          width="300px"
+                          height="300px"
+                          src={`http://192.168.125.74:8000/${results?.desc_img[1]}`}
+                          alt="Second slide"
+                        ></img>
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          class="d-block"
+                          width="300px"
+                          height="300px"
+                          src={`http://192.168.125.74:8000/${results?.desc_img[2]}`}
+                          alt="Third slide"
+                        ></img>
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          class="d-block"
+                          width="300px"
+                          height="300px"
+                          src={`http://192.168.125.74:8000/${results?.desc_img[3]}`}
+                          alt="Third slide"
+                        ></img>
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          class="d-block w-30"
+                          width="300px"
+                          height="300px"
+                          src={`http://192.168.125.74:8000/${results?.desc_img[4]}`}
+                          alt="Third slide"
+                        ></img>
+                      </div>
+                    </div>
+
+                    <a
+                      class="carousel-control-prev"
+                      href="#carouselExampleControls"
+                      role="button"
+                      data-slide="prev"
+                    >
+                      <span
+                        class="carousel-control-prev-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a
+                      class="carousel-control-next"
+                      href="#carouselExampleControls"
+                      role="button"
+                      data-slide="next"
+                    >
+                      <span
+                        class="carousel-control-next-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
                 </div>
+              </div>
             </aside>
             <main class="col-lg-6">
               <article class="ps-lg-3">
@@ -353,19 +447,7 @@ function SingleProduct() {
                     </table>
                   </article>
                   <article id="tab_warranty" class="tab-pane card-body">
-                    Tab content or sample information now <br />
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum. Lorem ipsum dolor sit
-                    amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo
+                    {propImgs}
                   </article>
                   <article id="tab_shipping" class="tab-pane card-body">
                     Another tab content or sample information now <br />
@@ -390,6 +472,13 @@ function SingleProduct() {
                         </a>
                       </dd>
 
+                      <dt class="col-5">Location</dt>
+                      <dd class="col-7">
+                        <a herf="{results?.seller_info?.zhuy}">
+                          {results?.location}
+                        </a>
+                      </dd>
+
                       <dt class="col-5">Delivery Score</dt>
                       <dd class="col-7">
                         {results?.seller_info?.delivery_score}points
@@ -407,12 +496,12 @@ function SingleProduct() {
                 </div>
               </div>
             </div>
-            <div class="">
+            <div class="text-left">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Similar items</h5>
-
-                  {propImgs}
+                 
+                  {skuImgs}
                 </div>
               </div>
             </div>
