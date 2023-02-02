@@ -54,7 +54,7 @@ function SingleProduct() {
                 class="mx-3 mb-2"
                 src={`${val}`}
                 width="150px"
-                height= "150px"
+                height="150px"
                 style={{ display: "inline-block" }}
               />
             );
@@ -442,7 +442,10 @@ function SingleProduct() {
                       </tr>
                     </table>
                   </article>
-                  <article id="tab_warranty" class="tab-pane card-body text-left">
+                  <article
+                    id="tab_warranty"
+                    class="tab-pane card-body text-left"
+                  >
                     {propImgs}
                   </article>
                   <article id="tab_shipping" class="tab-pane card-body">
@@ -496,7 +499,6 @@ function SingleProduct() {
               <div class="card">
                 <div class="card-body">
                   <h2 class="card-title">Similar items</h2>
-
                   {skuImgs}
                 </div>
               </div>
